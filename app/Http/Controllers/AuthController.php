@@ -11,6 +11,7 @@ use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -30,18 +31,20 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
-    { {
-            $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Unauthorized'], 401);
+        $expirationTime = Carbon::now()->addHours(2); // Thời gian sống: 2 giờ
+
+        try {
+            if (!$token = JWTAuth::attempt($credentials, ['exp' => $expirationTime])) {
+                return response()->json(['error' => 'Invalid credentials'], 401);
             }
-            $token = JWTAuth::attempt($credentials);
-            if ($token) {
-                Session::put('jwt_token', $token);
-            }
-            return response()->json(['token' => $token], 200);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'Could not create token'], 500);
         }
+
+        return response()->json(compact('token'));
     }
 
     /**
@@ -84,11 +87,10 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        dd(1);
-        $request->session()->invalidate(); // Hủy bỏ phiên hiện tại
-        $request->session()->regenerateToken(); // Tạo token mới cho phiên tiếp theo
+        // $request->session()->invalidate(); // Hủy bỏ phiên hiện tại
+        // $request->session()->regenerateToken(); // Tạo token mới cho phiên tiếp theo
 
-        return redirect('/')->with('message', 'Đăng xuất thành công');
+        // return redirect('/home')->with('message', 'Đăng xuất thành công');
     }
 
     /**

@@ -15,6 +15,7 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', [LoginController::class, 'index'])->name('login.home');
 Route::middleware(['web'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -22,5 +23,3 @@ Route::middleware(['web'])->group(function () {
 Route::get('/home', [LoginController::class, 'home'])->name('login.home-page');
 
 Route::get('/change-password', [ChangePassController::class, 'index'])->name('change-pass');
-
-

@@ -17,7 +17,9 @@
                         <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                             <input type="password" id="newPassword" placeholder="Re-type Password" required />
                         </div>
-                        <button class="button" type="button" onclick="changePassword()">Change Password</button>
+                        <button
+                            style="width: 100%; background-color: bisque; height: 30px;"
+                            class="button" type="button" onclick="changePassword()">Change Password</button>
                     </form>
                 </div>
             </div>
@@ -198,135 +200,6 @@
             border-left: 1px solid #ccc;
         }
 
-        .checkbox_option label {
-            margin-right: 1em;
-            position: relative;
-        }
-
-        .checkbox_option label:before {
-            content: "";
-            display: inline-block;
-            width: 0.5em;
-            height: 0.5em;
-            margin-right: 0.5em;
-            vertical-align: -2px;
-            border: 2px solid #ccc;
-            padding: 0.12em;
-            background-color: transparent;
-            background-clip: content-box;
-            transition: all 0.2s ease;
-        }
-
-        .checkbox_option label:after {
-            border-right: 2px solid #000;
-            border-top: 2px solid #000;
-            content: "";
-            height: 20px;
-            left: 2px;
-            position: absolute;
-            top: 7px;
-            transform: scaleX(-1) rotate(135deg);
-            transform-origin: left top;
-            width: 7px;
-            display: none;
-        }
-
-        .checkbox_option input:hover+label:before {
-            border-color: #000;
-        }
-
-        .checkbox_option input:checked+label:before {
-            border-color: #000;
-        }
-
-        .checkbox_option input:checked+label:after {
-            -moz-animation: check 0.8s ease 0s running;
-            -webkit-animation: check 0.8s ease 0s running;
-            animation: check 0.8s ease 0s running;
-            display: block;
-            width: 7px;
-            height: 20px;
-            border-color: #000;
-        }
-
-        .radio_option label {
-            margin-right: 1em;
-        }
-
-        .radio_option label:before {
-            content: "";
-            display: inline-block;
-            width: 0.5em;
-            height: 0.5em;
-            margin-right: 0.5em;
-            border-radius: 100%;
-            vertical-align: -3px;
-            border: 2px solid #ccc;
-            padding: 0.15em;
-            background-color: transparent;
-            background-clip: content-box;
-            transition: all 0.2s ease;
-        }
-
-        .radio_option input:hover+label:before {
-            border-color: #000;
-        }
-
-        .radio_option input:checked+label:before {
-            background-color: #000;
-            border-color: #000;
-        }
-
-        .select_option {
-            position: relative;
-            width: 100%;
-        }
-
-        .select_option select {
-            display: inline-block;
-            width: 100%;
-            height: 35px;
-            padding: 0px 15px;
-            cursor: pointer;
-            color: #7b7b7b;
-            border: 1px solid #ccc;
-            border-radius: 0;
-            background: #fff;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            transition: all 0.2s ease;
-        }
-
-        .select_option select::-ms-expand {
-            display: none;
-        }
-
-        .select_option select:hover,
-        .select_option select:focus {
-            color: #000;
-            background: #fafafa;
-            border-color: #000;
-            outline: none;
-        }
-
-        .select_arrow {
-            position: absolute;
-            top: calc(50% - 4px);
-            right: 15px;
-            width: 0;
-            height: 0;
-            pointer-events: none;
-            border-width: 8px 5px 0 5px;
-            border-style: solid;
-            border-color: #7b7b7b transparent transparent transparent;
-        }
-
-        .select_option select:hover+.select_arrow,
-        .select_option select:focus+.select_arrow {
-            border-top-color: #000;
-        }
-
         .credit {
             position: relative;
             z-index: 1;
@@ -501,5 +374,5 @@
     </style>
 @endpush
 @push('js')
-    <script src="{{asset('assets/js/change_pass.js')}}"></script>
+    <script src="{{ asset('assets/js/change_pass.js') }}"></script>
 @endpush

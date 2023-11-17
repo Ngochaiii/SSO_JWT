@@ -24,6 +24,8 @@ return [
     | since RSA and ECDSA use a private/public key combo (See below).
     |
     */
+    'algorithm' => env('JWT_ALGORITHM', 'HS256'),
+    'ttl' => env('JWT_TTL', 120),// Thời gian sống của token (đơn vị: phút)
 
     'secret' => env('JWT_SECRET'),
 
@@ -43,6 +45,8 @@ return [
     | RS256, RS384 & RS512 / ES256, ES384 & ES512 will use the keys below.
     |
     */
+    'cookie' => true,
+
 
     'keys' => [
 
